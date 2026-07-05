@@ -1,6 +1,31 @@
 import { useState, useCallback, useRef } from "react";
 
 /* ═══════════════════════════════════════════
+   SUPABASE — uses env vars injected by Vercel
+   VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY
+═══════════════════════════════════════════ */
+const SUPABASE_URL  = import.meta.env.VITE_SUPABASE_URL;
+const SUPABASE_ANON = import.meta.env.VITE_SUPABASE_ANON_KEY;
+
+async function salvarSolicitacao(dados) {
+  if (!SUPABASE_URL || !SUPABASE_ANON) return; // silently skip if not configured
+  try {
+    await fetch(`${SUPABASE_URL}/rest/v1/solicitacoes`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "apikey": SUPABASE_ANON,
+        "Authorization": `Bearer ${SUPABASE_ANON}`,
+        "Prefer": "return=minimal",
+      },
+      body: JSON.stringify(dados),
+    });
+  } catch (e) {
+    console.error("Supabase save error:", e);
+  }
+}
+
+/* ═══════════════════════════════════════════
    TOKENS — off-white / charcoal editorial
 ═══════════════════════════════════════════ */
 const C = {
@@ -312,19 +337,29 @@ function RequestForm({cnpj, prefill, onBack}){
       f.faturamentoMensalAprox ? `*Faturamento mensal aprox.:* ${fmtBRL(parseCurrInput(f.faturamentoMensalAprox))}` : null,
       f.observacoes ? `\n*Observações:* ${f.observacoes}` : null,
       "",
-      "*Documentos anexados no formulário:*",
-      `- Contrato Social: ${files.contratoSocial ? "✅ " + files.contratoSocial.name : "❌ não enviado"}`,
-      `- Foto da empresa: ${files.fotoFachada ? "✅ " + files.fotoFachada.name : "❌ não enviado"}`,
-      `- Comprovante de faturamento: ${files.comprovanteFaturamento ? "✅ " + files.comprovanteFaturamento.name : "❌ não enviado"}`,
-      `- Fluxo de caixa: ${files.fluxoCaixa ? "✅ " + files.fluxoCaixa.name : "❌ não enviado"}`,
-      "",
-      "_Os arquivos anexados no site precisam ser reenviados aqui pelo WhatsApp, pois o formulário não os transmite automaticamente._",
+      "_Solicitação enviada via CréditoBI — creditobi-site.vercel.app_",
     ].filter(Boolean);
     return lines.join("\n");
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if(!validateStep(4)) return;
+    // Save to Supabase (fire and forget — doesn't block UX)
+    salvarSolicitacao({
+      cnpj,
+      razao_social:        f.razaoSocial,
+      cidade:              f.cidade,
+      uf:                  f.uf,
+      cnae:                f.cnae,
+      nome_responsavel:    f.nomeResponsavel,
+      telefone:            f.telefone,
+      email:               f.email,
+      valor_solicitado:    parseCurrInput(f.valorSolicitado) || null,
+      finalidade:          f.finalidade==="Outro" ? f.finalidadeOutro : f.finalidade,
+      garantias:           f.garantias,
+      faturamento_mensal:  parseCurrInput(f.faturamentoMensalAprox) || null,
+      observacoes:         f.observacoes,
+    });
     setSubmitted(true);
   };
 
@@ -353,8 +388,7 @@ function RequestForm({cnpj, prefill, onBack}){
           <span style={{fontSize:16}}>📲</span> Enviar pelo WhatsApp →
         </button>
         <p style={{fontSize:11,color:C.dim,lineHeight:1.6}}>
-          Ao clicar, abriremos o WhatsApp com um resumo da sua solicitação já preenchido.<br/>
-          <b>Importante:</b> reenvie os documentos anexados (contrato social, fotos, comprovantes) diretamente na conversa, pois o formulário não os transmite automaticamente.
+          Ao clicar, abriremos o WhatsApp com um resumo da sua solicitação já preenchido para nossa equipe.
         </p>
       </div>
     </div>;
