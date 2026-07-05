@@ -619,48 +619,7 @@ function Home({onConsult}){
       </div>
     </section>
 
-    {/* HOW IT WORKS — honest, manual process */}
-    <section style={{padding:"64px 6%",borderTop:`1px solid ${C.border}`}}>
-      <div style={{maxWidth:1000,margin:"0 auto"}}>
-        <div style={{textAlign:"center",marginBottom:44}}>
-          <div style={{fontSize:11,color:C.accent,fontFamily:"'JetBrains Mono',monospace",marginBottom:10,letterSpacing:"0.08em",textTransform:"uppercase"}}>Como funciona</div>
-          <h2 style={{fontFamily:"'Source Serif 4',serif",fontSize:"clamp(24px,3vw,32px)",fontWeight:700}}>Um processo real, sem promessas automáticas</h2>
-        </div>
-        <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(220px,1fr))",gap:18}}>
-          {[
-            {n:"1",t:"Você envia a solicitação",d:"CNPJ, dados da empresa, valor desejado, garantias disponíveis e documentos básicos."},
-            {n:"2",t:"Nossa equipe analisa",d:"Cada solicitação é avaliada manualmente — checamos restrições, documentação e viabilidade real."},
-            {n:"3",t:"Indicamos o fundo certo",d:"Com base na análise, conectamos sua empresa ao FIDC ou fundo independente mais adequado."},
-            {n:"4",t:"Você é contatado",d:"O retorno acontece por WhatsApp, com transparência sobre o que é viável para o seu caso."},
-          ].map(s=>(
-            <div key={s.n} style={{padding:22,background:C.surface,border:`1px solid ${C.border}`,borderRadius:13}}>
-              <div style={{width:28,height:28,borderRadius:8,background:C.accentGlow,border:`1px solid ${C.accent}30`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:13,fontWeight:700,color:C.accent,marginBottom:14,fontFamily:"'Source Serif 4',serif"}}>{s.n}</div>
-              <h3 style={{fontFamily:"'Source Serif 4',serif",fontSize:14,fontWeight:700,marginBottom:7}}>{s.t}</h3>
-              <p style={{color:C.soft,fontSize:12.5,lineHeight:1.7}}>{s.d}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    {/* WHY MANUAL — sets honest expectations */}
-    <section style={{padding:"64px 6%",background:C.surface,borderTop:`1px solid ${C.border}`}}>
-      <div style={{maxWidth:760,margin:"0 auto",textAlign:"center"}}>
-        <h2 style={{fontFamily:"'Source Serif 4',serif",fontSize:"clamp(22px,3vw,30px)",fontWeight:700,marginBottom:16}}>Por que a análise é manual?</h2>
-        <p style={{color:C.soft,lineHeight:1.85,fontSize:14,marginBottom:14}}>
-          Crédito empresarial envolve restrições, documentação e particularidades que não podem ser
-          reduzidas a um número gerado automaticamente. Uma empresa com pendências fiscais, protesto
-          ou CNAE de risco precisa de uma avaliação real — não de uma simulação otimista.
-        </p>
-        <p style={{color:C.soft,lineHeight:1.85,fontSize:14}}>
-          Por isso, cada solicitação que chega aqui passa por análise humana antes de qualquer
-          indicação de fundo. Isso protege sua empresa de expectativas falsas e protege os fundos
-          parceiros de receberem solicitações sem triagem.
-        </p>
-      </div>
-    </section>
-
-    {/* DIAGNÓSTICO DE CRÉDITO — paid service */}
+    {/* DIAGNÓSTICO DE CRÉDITO — paid service — PRIMEIRO */}
     <section style={{padding:"64px 6%",borderTop:`1px solid ${C.border}`}}>
       <div style={{maxWidth:1000,margin:"0 auto"}}>
         <div style={{textAlign:"center",marginBottom:44}}>
@@ -671,7 +630,6 @@ function Home({onConsult}){
           </p>
         </div>
         <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:24,maxWidth:860,margin:"0 auto",alignItems:"start"}}>
-          {/* What's included */}
           <div style={{display:"flex",flexDirection:"column",gap:14}}>
             {[
               {icon:"🔍",t:"Análise da situação real",d:"Avaliamos restrições, documentação disponível e capacidade de garantia — sem filtros automáticos."},
@@ -687,15 +645,12 @@ function Home({onConsult}){
               </div>
             ))}
           </div>
-          {/* Pricing card */}
           <div style={{padding:"28px 26px",background:C.surface,border:`1.5px solid ${C.teal}40`,borderRadius:16,textAlign:"center",position:"sticky",top:80}}>
             <div style={{fontSize:11,color:C.teal,fontFamily:"'JetBrains Mono',monospace",letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:12}}>Sessão individual</div>
-            <div style={{fontFamily:"'Source Serif 4',serif",fontSize:42,fontWeight:700,color:C.text,lineHeight:1,marginBottom:4}}>
-              R$ 97
-            </div>
+            <div style={{fontFamily:"'Source Serif 4',serif",fontSize:42,fontWeight:700,color:C.text,lineHeight:1,marginBottom:4}}>R$ 97</div>
             <div style={{fontSize:12,color:C.dim,marginBottom:20}}>pagamento único · 30 minutos · via WhatsApp ou videochamada</div>
             <div style={{display:"flex",flexDirection:"column",gap:8,marginBottom:22,textAlign:"left"}}>
-              {["Diagnóstico completo da situação de crédito","Indicação de fundos e instrumentos adequados","Plano de ação com próximos passos","Gravação da sessão enviada para você"].map(b=>(
+              {["Diagnóstico completo da situação de crédito","Indicação de fundos e instrumentos adequados","Plano de ação com próximos passos"].map(b=>(
                 <div key={b} style={{display:"flex",gap:8,alignItems:"flex-start"}}>
                   <span style={{color:C.teal,flexShrink:0,fontWeight:700,fontSize:13}}>✓</span>
                   <span style={{fontSize:12,color:C.soft}}>{b}</span>
@@ -714,12 +669,12 @@ function Home({onConsult}){
       </div>
     </section>
 
-    {/* SOBRE — credibility section */}
+    {/* SOBRE — credibility section — SEGUNDO */}
     <section style={{padding:"64px 6%",background:C.surface,borderTop:`1px solid ${C.border}`}}>
       <div style={{maxWidth:860,margin:"0 auto",display:"grid",gridTemplateColumns:"1fr 2fr",gap:48,alignItems:"center"}}>
         <div style={{textAlign:"center"}}>
-          <div style={{width:100,height:100,borderRadius:"50%",background:C.accentGlow,border:`2px solid ${C.accent}30`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:36,margin:"0 auto 16px"}}>
-            👤
+          <div style={{width:120,height:120,borderRadius:"50%",overflow:"hidden",border:`3px solid ${C.accent}30`,margin:"0 auto 16px"}}>
+            <img src="https://raw.githubusercontent.com/matheushenrique0899-hash/creditobi-site/main/matheus.jpg.jpeg" alt="Matheus Henrique" style={{width:"100%",height:"100%",objectFit:"cover",objectPosition:"center top"}}/>
           </div>
           <div style={{fontFamily:"'Source Serif 4',serif",fontWeight:700,fontSize:16,marginBottom:4}}>Matheus Henrique</div>
           <div style={{fontSize:12,color:C.soft,marginBottom:12}}>Especialista em Crédito Empresarial</div>
@@ -754,6 +709,47 @@ function Home({onConsult}){
             ))}
           </div>
         </div>
+      </div>
+    </section>
+
+    {/* HOW IT WORKS — FIDC process — TERCEIRO */}
+    <section style={{padding:"64px 6%",borderTop:`1px solid ${C.border}`}}>
+      <div style={{maxWidth:1000,margin:"0 auto"}}>
+        <div style={{textAlign:"center",marginBottom:44}}>
+          <div style={{fontSize:11,color:C.accent,fontFamily:"'JetBrains Mono',monospace",marginBottom:10,letterSpacing:"0.08em",textTransform:"uppercase"}}>Acesso a crédito via FIDC</div>
+          <h2 style={{fontFamily:"'Source Serif 4',serif",fontSize:"clamp(24px,3vw,32px)",fontWeight:700}}>Conectamos sua empresa ao fundo certo</h2>
+        </div>
+        <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(220px,1fr))",gap:18}}>
+          {[
+            {n:"1",t:"Você envia a solicitação",d:"CNPJ, dados da empresa, valor desejado e garantias disponíveis."},
+            {n:"2",t:"Nossa equipe analisa",d:"Cada solicitação é avaliada manualmente — checamos restrições, documentação e viabilidade real."},
+            {n:"3",t:"Indicamos o fundo certo",d:"Com base na análise, conectamos sua empresa ao FIDC ou fundo independente mais adequado."},
+            {n:"4",t:"Você é contatado",d:"O retorno acontece por WhatsApp, com transparência sobre o que é viável para o seu caso."},
+          ].map(s=>(
+            <div key={s.n} style={{padding:22,background:C.surface,border:`1px solid ${C.border}`,borderRadius:13}}>
+              <div style={{width:28,height:28,borderRadius:8,background:C.accentGlow,border:`1px solid ${C.accent}30`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:13,fontWeight:700,color:C.accent,marginBottom:14,fontFamily:"'Source Serif 4',serif"}}>{s.n}</div>
+              <h3 style={{fontFamily:"'Source Serif 4',serif",fontSize:14,fontWeight:700,marginBottom:7}}>{s.t}</h3>
+              <p style={{color:C.soft,fontSize:12.5,lineHeight:1.7}}>{s.d}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* WHY MANUAL — QUARTO */}
+    <section style={{padding:"64px 6%",background:C.surface,borderTop:`1px solid ${C.border}`}}>
+      <div style={{maxWidth:760,margin:"0 auto",textAlign:"center"}}>
+        <h2 style={{fontFamily:"'Source Serif 4',serif",fontSize:"clamp(22px,3vw,30px)",fontWeight:700,marginBottom:16}}>Por que a análise é manual?</h2>
+        <p style={{color:C.soft,lineHeight:1.85,fontSize:14,marginBottom:14}}>
+          Crédito empresarial envolve restrições, documentação e particularidades que não podem ser
+          reduzidas a um número gerado automaticamente. Uma empresa com pendências fiscais, protesto
+          ou CNAE de risco precisa de uma avaliação real — não de uma simulação otimista.
+        </p>
+        <p style={{color:C.soft,lineHeight:1.85,fontSize:14}}>
+          Por isso, cada solicitação que chega aqui passa por análise humana antes de qualquer
+          indicação de fundo. Isso protege sua empresa de expectativas falsas e protege os fundos
+          parceiros de receberem solicitações sem triagem.
+        </p>
       </div>
     </section>
 
