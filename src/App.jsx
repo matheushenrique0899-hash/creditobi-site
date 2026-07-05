@@ -258,7 +258,7 @@ function CNPJNotice({error,isNetworkBlock,onContinueManually,onBack}){
 ═══════════════════════════════════════════ */
 function RequestForm({cnpj, prefill, onBack}){
   const [step, setStep] = useState(1);
-  const totalSteps = 4;
+  const totalSteps = 3;
 
   const [f, setF] = useState({
     razaoSocial: prefill?.name || "",
@@ -276,17 +276,10 @@ function RequestForm({cnpj, prefill, onBack}){
     faturamentoMensalAprox: "",
     observacoes: "",
   });
-  const [files, setFiles] = useState({
-    contratoSocial: null,
-    fotoFachada: null,
-    comprovanteFaturamento: null,
-    fluxoCaixa: null,
-  });
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
 
   const set = (k,v) => setF(p=>({...p,[k]:v}));
-  const setFile = (k,v) => setFiles(p=>({...p,[k]:v}));
   const toggleGuarantee = (id) => setF(p=>({
     ...p,
     garantias: p.garantias.includes(id) ? p.garantias.filter(g=>g!==id) : [...p.garantias, id]
@@ -306,9 +299,6 @@ function RequestForm({cnpj, prefill, onBack}){
       if(!f.valorSolicitado || parseCurrInput(f.valorSolicitado)<=0) e.valorSolicitado = "Informe o valor solicitado.";
       if(!f.finalidade) e.finalidade = "Selecione a finalidade do crédito.";
       if(f.garantias.length===0) e.garantias = "Selecione ao menos uma opção (ou 'ainda não sei').";
-    }
-    if(s===4){
-      if(!files.contratoSocial) e.contratoSocial = "Anexe o contrato social.";
     }
     setErrors(e);
     return Object.keys(e).length===0;
@@ -343,7 +333,7 @@ function RequestForm({cnpj, prefill, onBack}){
   };
 
   const handleSubmit = async () => {
-    if(!validateStep(4)) return;
+    if(!validateStep(3)) return;
     // Save to Supabase (fire and forget — doesn't block UX)
     salvarSolicitacao({
       cnpj,
@@ -394,7 +384,7 @@ function RequestForm({cnpj, prefill, onBack}){
     </div>;
   }
 
-  const stepTitles = ["Dados da Empresa","Responsável","Solicitação de Crédito","Documentos"];
+  const stepTitles = ["Dados da Empresa","Responsável","Solicitação de Crédito"];
 
   return <div style={{minHeight:"100vh",background:C.bg,fontFamily:"'Inter',sans-serif",color:C.text,padding:"32px 5% 60px"}}>
     <div style={{maxWidth:560,margin:"0 auto"}}>
@@ -535,34 +525,6 @@ function RequestForm({cnpj, prefill, onBack}){
               style={{...inputBase, resize:"vertical", fontFamily:"'Inter',sans-serif"}}
             />
           </div>
-        </div>}
-
-        {/* STEP 4 — Documents */}
-        {step===4 && <div style={{display:"flex",flexDirection:"column",gap:18}}>
-          <div style={{padding:"12px 14px",background:C.cardHi,border:`1px solid ${C.border}`,borderRadius:9,fontSize:12,color:C.soft,lineHeight:1.6}}>
-            Esses documentos são usados pela nossa equipe para a análise manual de crédito. Quanto mais completos, mais rápida a resposta.
-          </div>
-          <FileUpload
-            label="Contrato Social" required
-            value={files.contratoSocial} onChange={v=>setFile("contratoSocial",v)}
-            error={errors.contratoSocial}
-            hint="Última alteração contratual consolidada, se houver"
-          />
-          <FileUpload
-            label="Foto da Empresa"
-            value={files.fotoFachada} onChange={v=>setFile("fotoFachada",v)}
-            hint="Fachada, loja ou ponto comercial"
-          />
-          <FileUpload
-            label="Comprovante de Faturamento"
-            value={files.comprovanteFaturamento} onChange={v=>setFile("comprovanteFaturamento",v)}
-            hint="Extrato bancário, relatório de vendas ou notas fiscais"
-          />
-          <FileUpload
-            label="Fluxo de Caixa"
-            value={files.fluxoCaixa} onChange={v=>setFile("fluxoCaixa",v)}
-            hint="Planilha ou relatório, se a empresa tiver"
-          />
         </div>}
 
         {/* nav buttons */}
