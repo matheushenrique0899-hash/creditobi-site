@@ -660,6 +660,103 @@ function Home({onConsult}){
       </div>
     </section>
 
+    {/* DIAGNÓSTICO DE CRÉDITO — paid service */}
+    <section style={{padding:"64px 6%",borderTop:`1px solid ${C.border}`}}>
+      <div style={{maxWidth:1000,margin:"0 auto"}}>
+        <div style={{textAlign:"center",marginBottom:44}}>
+          <div style={{fontSize:11,color:C.teal,fontFamily:"'JetBrains Mono',monospace",marginBottom:10,letterSpacing:"0.08em",textTransform:"uppercase"}}>Serviço especializado</div>
+          <h2 style={{fontFamily:"'Source Serif 4',serif",fontSize:"clamp(24px,3vw,32px)",fontWeight:700,marginBottom:12}}>Diagnóstico de Crédito Empresarial</h2>
+          <p style={{color:C.soft,fontSize:14,maxWidth:520,margin:"0 auto",lineHeight:1.75}}>
+            Uma sessão de 30 minutos com um especialista para entender a real situação de crédito da sua empresa e o caminho mais viável para acessar os recursos que você precisa.
+          </p>
+        </div>
+        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:24,maxWidth:860,margin:"0 auto",alignItems:"start"}}>
+          {/* What's included */}
+          <div style={{display:"flex",flexDirection:"column",gap:14}}>
+            {[
+              {icon:"🔍",t:"Análise da situação real",d:"Avaliamos restrições, documentação disponível e capacidade de garantia — sem filtros automáticos."},
+              {icon:"🏦",t:"Indicação de instrumento adequado",d:"Capital de giro, antecipação de recebíveis, CCB, FIDC — qual faz sentido para o seu perfil e momento."},
+              {icon:"📋",t:"Plano de ação concreto",d:"O que sua empresa precisa organizar antes de ir a um fundo, com prioridades claras e próximos passos."},
+            ].map(item=>(
+              <div key={item.t} style={{display:"flex",gap:12,alignItems:"flex-start",padding:"14px 16px",background:C.surface,border:`1px solid ${C.border}`,borderRadius:12}}>
+                <span style={{fontSize:18,flexShrink:0}}>{item.icon}</span>
+                <div>
+                  <div style={{fontWeight:600,fontSize:13,marginBottom:4}}>{item.t}</div>
+                  <div style={{fontSize:12,color:C.soft,lineHeight:1.6}}>{item.d}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+          {/* Pricing card */}
+          <div style={{padding:"28px 26px",background:C.surface,border:`1.5px solid ${C.teal}40`,borderRadius:16,textAlign:"center",position:"sticky",top:80}}>
+            <div style={{fontSize:11,color:C.teal,fontFamily:"'JetBrains Mono',monospace",letterSpacing:"0.08em",textTransform:"uppercase",marginBottom:12}}>Sessão individual</div>
+            <div style={{fontFamily:"'Source Serif 4',serif",fontSize:42,fontWeight:700,color:C.text,lineHeight:1,marginBottom:4}}>
+              R$ 97
+            </div>
+            <div style={{fontSize:12,color:C.dim,marginBottom:20}}>pagamento único · 30 minutos · via WhatsApp ou videochamada</div>
+            <div style={{display:"flex",flexDirection:"column",gap:8,marginBottom:22,textAlign:"left"}}>
+              {["Diagnóstico completo da situação de crédito","Indicação de fundos e instrumentos adequados","Plano de ação com próximos passos","Gravação da sessão enviada para você"].map(b=>(
+                <div key={b} style={{display:"flex",gap:8,alignItems:"flex-start"}}>
+                  <span style={{color:C.teal,flexShrink:0,fontWeight:700,fontSize:13}}>✓</span>
+                  <span style={{fontSize:12,color:C.soft}}>{b}</span>
+                </div>
+              ))}
+            </div>
+            <button
+              onClick={()=>window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Olá! Gostaria de agendar um Diagnóstico de Crédito Empresarial. Pode me passar a disponibilidade?")}`, "_blank")}
+              style={{width:"100%",padding:"13px",background:C.gradTeal,border:"none",borderRadius:10,color:"#fff",fontWeight:700,fontSize:14,cursor:"pointer"}}
+            >
+              Agendar pelo WhatsApp →
+            </button>
+            <div style={{fontSize:11,color:C.dim,marginTop:10}}>Retorno em até 24h úteis para confirmação</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* SOBRE — credibility section */}
+    <section style={{padding:"64px 6%",background:C.surface,borderTop:`1px solid ${C.border}`}}>
+      <div style={{maxWidth:860,margin:"0 auto",display:"grid",gridTemplateColumns:"1fr 2fr",gap:48,alignItems:"center"}}>
+        <div style={{textAlign:"center"}}>
+          <div style={{width:100,height:100,borderRadius:"50%",background:C.accentGlow,border:`2px solid ${C.accent}30`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:36,margin:"0 auto 16px"}}>
+            👤
+          </div>
+          <div style={{fontFamily:"'Source Serif 4',serif",fontWeight:700,fontSize:16,marginBottom:4}}>Matheus Henrique</div>
+          <div style={{fontSize:12,color:C.soft,marginBottom:12}}>Especialista em Crédito Empresarial</div>
+          <div style={{display:"flex",flexDirection:"column",gap:6}}>
+            {["CPA-20 · ANBIMA","Gestão Empresarial","MBA Agronegócios · USP"].map(c=>(
+              <span key={c} style={{fontSize:11,padding:"3px 10px",borderRadius:99,background:C.accentGlow,color:C.accent,border:`1px solid ${C.accent}25`,fontFamily:"'JetBrains Mono',monospace"}}>{c}</span>
+            ))}
+          </div>
+        </div>
+        <div>
+          <div style={{fontSize:11,color:C.accent,fontFamily:"'JetBrains Mono',monospace",marginBottom:12,letterSpacing:"0.08em",textTransform:"uppercase"}}>Sobre o especialista</div>
+          <h2 style={{fontFamily:"'Source Serif 4',serif",fontSize:"clamp(20px,2.5vw,26px)",fontWeight:700,lineHeight:1.25,marginBottom:16}}>
+            8 anos conectando empresas às melhores oportunidades de crédito
+          </h2>
+          <p style={{color:C.soft,lineHeight:1.85,fontSize:14,marginBottom:14}}>
+            Com passagem pelo <b style={{color:C.text}}>Santander</b> e atualmente no <b style={{color:C.text}}>Itaú</b>, acumulei 8 anos de experiência prática em crédito PJ, financiamentos, antecipação de recebíveis, gestão de maquininhas e toda a cadeia de produtos financeiros para empresas.
+          </p>
+          <p style={{color:C.soft,lineHeight:1.85,fontSize:14,marginBottom:20}}>
+            Fui eleito <b style={{color:C.text}}>Melhor Gerente PJ do Brasil em 2023 e 2024</b> — reconhecimento que veio de entender a realidade das empresas, não apenas os produtos do banco. É essa visão que trago para o CréditoBI: sem promessas automáticas, sem simulação, com análise de quem conhece o mercado por dentro.
+          </p>
+          <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}}>
+            {[
+              {n:"8 anos",d:"de experiência em crédito PJ"},
+              {n:"2× eleito",d:"Melhor Gerente PJ do Brasil"},
+              {n:"Santander + Itaú",d:"experiência nos dois maiores bancos privados"},
+              {n:"MBA USP",d:"em Agronegócios · Gestão Empresarial"},
+            ].map(s=>(
+              <div key={s.n} style={{padding:"12px 14px",background:C.card,border:`1px solid ${C.border}`,borderRadius:10}}>
+                <div style={{fontFamily:"'Source Serif 4',serif",fontWeight:700,fontSize:15,color:C.accent,marginBottom:3}}>{s.n}</div>
+                <div style={{fontSize:11,color:C.soft,lineHeight:1.4}}>{s.d}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
     <footer style={{padding:"24px 6%",borderTop:`1px solid ${C.border}`,display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:10}}>
       <span style={{fontFamily:"'Source Serif 4',serif",fontWeight:700,fontSize:13}}>Crédito<span style={{color:C.accent}}>BI</span></span>
       <span style={{fontSize:11,color:C.dim}}>© 2025 CréditoBI · Análise manual · LGPD</span>
