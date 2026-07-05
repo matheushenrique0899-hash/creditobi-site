@@ -582,50 +582,15 @@ function Home({onConsult}){
       </div>
     </nav>
 
-    {/* HERO */}
-    <section style={{minHeight:"92vh",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",padding:"100px 6% 60px",position:"relative"}}>
-      <div style={{position:"absolute",inset:0,backgroundImage:`radial-gradient(${C.border} 1px,transparent 1px)`,backgroundSize:"44px 44px",opacity:0.3,pointerEvents:"none"}}/>
-
-      <div style={{position:"relative",textAlign:"center",maxWidth:760,animation:"cbUp 0.8s ease both"}}>
-        <div style={{display:"inline-flex",alignItems:"center",gap:8,padding:"5px 14px",borderRadius:99,border:`1px solid ${C.accent}25`,background:C.accentGlow,marginBottom:26}}>
-          <Dot/><span style={{fontSize:11,color:C.accent,fontFamily:"'JetBrains Mono',monospace",letterSpacing:"0.05em"}}>FIDCs · Fundos de Crédito Independentes</span>
-        </div>
-
-        <h1 style={{fontFamily:"'Source Serif 4',serif",fontSize:"clamp(32px,4.8vw,54px)",fontWeight:700,lineHeight:1.15,letterSpacing:"-0.01em",marginBottom:18,color:C.text}}>
-          Solicite crédito para sua empresa<br/>com análise feita por especialistas
-        </h1>
-
-        <p style={{fontSize:15,color:C.soft,lineHeight:1.8,margin:"0 auto 38px",maxWidth:540}}>
-          Preencha os dados da sua empresa e envie os documentos. Nossa equipe analisa manualmente
-          e encontra o fundo de crédito (FIDC) mais adequado ao seu perfil — sem promessas automáticas, sem simulação.
-        </p>
-
-        <div style={{maxWidth:480,margin:"0 auto"}}>
-          <div style={{display:"flex",borderRadius:12,overflow:"hidden",boxShadow:`0 0 0 1px ${invalid?C.red:C.border}`}}>
-            <input
-              value={fmtCNPJ(val)}
-              onChange={e=>setVal(e.target.value.replace(/\D/g,"").slice(0,14))}
-              onKeyDown={e=>e.key==="Enter"&&go()}
-              placeholder="00.000.000/0000-00"
-              style={{flex:1,padding:"16px 18px",background:C.surface,border:"none",color:C.text,fontSize:15,fontFamily:"'JetBrains Mono',monospace",letterSpacing:"0.05em",outline:"none"}}
-            />
-            <button onClick={go} style={{padding:"16px 22px",background:C.grad,border:"none",color:"#fff",fontWeight:700,fontSize:13,cursor:"pointer",whiteSpace:"nowrap"}}>
-              Iniciar Solicitação →
-            </button>
-          </div>
-          {invalid && <div style={{marginTop:8,fontSize:12,color:C.red}}>Digite um CNPJ válido com 14 dígitos.</div>}
-        </div>
-        <p style={{marginTop:14,fontSize:11,color:C.dim}}>Análise 100% manual · Sem aprovação automática · LGPD</p>
-      </div>
-    </section>
-
-    {/* DIAGNÓSTICO DE CRÉDITO — paid service — PRIMEIRO */}
-    <section style={{padding:"64px 6%",borderTop:`1px solid ${C.border}`}}>
+    {/* DIAGNÓSTICO DE CRÉDITO — paid service — PRIMEIRO, logo após nav */}
+    <section style={{padding:"80px 6% 64px",borderBottom:`1px solid ${C.border}`}}>
       <div style={{maxWidth:1000,margin:"0 auto"}}>
         <div style={{textAlign:"center",marginBottom:44}}>
-          <div style={{fontSize:11,color:C.teal,fontFamily:"'JetBrains Mono',monospace",marginBottom:10,letterSpacing:"0.08em",textTransform:"uppercase"}}>Serviço especializado</div>
-          <h2 style={{fontFamily:"'Source Serif 4',serif",fontSize:"clamp(24px,3vw,32px)",fontWeight:700,marginBottom:12}}>Diagnóstico de Crédito Empresarial</h2>
-          <p style={{color:C.soft,fontSize:14,maxWidth:520,margin:"0 auto",lineHeight:1.75}}>
+          <div style={{display:"inline-flex",alignItems:"center",gap:8,padding:"5px 14px",borderRadius:99,border:`1px solid ${C.teal}25`,background:C.tealGlow,marginBottom:18}}>
+            <span style={{fontSize:11,color:C.teal,fontFamily:"'JetBrains Mono',monospace",letterSpacing:"0.05em"}}>Serviço especializado</span>
+          </div>
+          <h1 style={{fontFamily:"'Source Serif 4',serif",fontSize:"clamp(28px,4vw,46px)",fontWeight:700,lineHeight:1.15,marginBottom:14}}>Diagnóstico de Crédito Empresarial</h1>
+          <p style={{color:C.soft,fontSize:15,maxWidth:520,margin:"0 auto",lineHeight:1.75}}>
             Uma sessão de 30 minutos com um especialista para entender a real situação de crédito da sua empresa e o caminho mais viável para acessar os recursos que você precisa.
           </p>
         </div>
@@ -674,7 +639,7 @@ function Home({onConsult}){
       <div style={{maxWidth:860,margin:"0 auto",display:"grid",gridTemplateColumns:"1fr 2fr",gap:48,alignItems:"center"}}>
         <div style={{textAlign:"center"}}>
           <div style={{width:120,height:120,borderRadius:"50%",overflow:"hidden",border:`3px solid ${C.accent}30`,margin:"0 auto 16px"}}>
-            <img src="https://raw.githubusercontent.com/matheushenrique0899-hash/creditobi-site/main/matheus.jpg.jpeg" alt="Matheus Henrique" style={{width:"100%",height:"100%",objectFit:"cover",objectPosition:"center top"}}/>
+            <img src="https://raw.githubusercontent.com/matheushenrique0899-hash/creditobi-site/main/matheus.jpg.jpeg" alt="Matheus Henrique" style={{width:"100%",height:"100%",objectFit:"cover",objectPosition:"center 15%"}}/>
           </div>
           <div style={{fontFamily:"'Source Serif 4',serif",fontWeight:700,fontSize:16,marginBottom:4}}>Matheus Henrique</div>
           <div style={{fontSize:12,color:C.soft,marginBottom:12}}>Especialista em Crédito Empresarial</div>
@@ -741,15 +706,41 @@ function Home({onConsult}){
       <div style={{maxWidth:760,margin:"0 auto",textAlign:"center"}}>
         <h2 style={{fontFamily:"'Source Serif 4',serif",fontSize:"clamp(22px,3vw,30px)",fontWeight:700,marginBottom:16}}>Por que a análise é manual?</h2>
         <p style={{color:C.soft,lineHeight:1.85,fontSize:14,marginBottom:14}}>
-          Crédito empresarial envolve restrições, documentação e particularidades que não podem ser
-          reduzidas a um número gerado automaticamente. Uma empresa com pendências fiscais, protesto
-          ou CNAE de risco precisa de uma avaliação real — não de uma simulação otimista.
+          Crédito empresarial envolve restrições, documentação e particularidades que não podem ser reduzidas a um número gerado automaticamente. Uma empresa com pendências fiscais, protesto ou CNAE de risco precisa de uma avaliação real — não de uma simulação otimista.
         </p>
         <p style={{color:C.soft,lineHeight:1.85,fontSize:14}}>
-          Por isso, cada solicitação que chega aqui passa por análise humana antes de qualquer
-          indicação de fundo. Isso protege sua empresa de expectativas falsas e protege os fundos
-          parceiros de receberem solicitações sem triagem.
+          Por isso, cada solicitação que chega aqui passa por análise humana antes de qualquer indicação de fundo. Isso protege sua empresa de expectativas falsas e protege os fundos parceiros de receberem solicitações sem triagem.
         </p>
+      </div>
+    </section>
+
+    {/* SOLICITAR CRÉDITO VIA FIDC — HERO movido pro final */}
+    <section style={{padding:"64px 6%",borderTop:`1px solid ${C.border}`}}>
+      <div style={{position:"absolute",inset:0,backgroundImage:`radial-gradient(${C.border} 1px,transparent 1px)`,backgroundSize:"44px 44px",opacity:0.3,pointerEvents:"none"}}/>
+      <div style={{position:"relative",textAlign:"center",maxWidth:760,margin:"0 auto"}}>
+        <div style={{fontSize:11,color:C.accent,fontFamily:"'JetBrains Mono',monospace",marginBottom:14,letterSpacing:"0.08em",textTransform:"uppercase"}}>Solicitar crédito via FIDC</div>
+        <h2 style={{fontFamily:"'Source Serif 4',serif",fontSize:"clamp(26px,3.5vw,38px)",fontWeight:700,lineHeight:1.2,marginBottom:14}}>
+          Solicite crédito para sua empresa
+        </h2>
+        <p style={{fontSize:14,color:C.soft,lineHeight:1.8,margin:"0 auto 32px",maxWidth:480}}>
+          Preencha o CNPJ e envie sua solicitação. Nossa equipe analisa e indica o FIDC mais adequado ao seu perfil.
+        </p>
+        <div style={{maxWidth:480,margin:"0 auto"}}>
+          <div style={{display:"flex",borderRadius:12,overflow:"hidden",boxShadow:`0 0 0 1px ${invalid?C.red:C.border}`}}>
+            <input
+              value={fmtCNPJ(val)}
+              onChange={e=>setVal(e.target.value.replace(/\D/g,"").slice(0,14))}
+              onKeyDown={e=>e.key==="Enter"&&go()}
+              placeholder="00.000.000/0000-00"
+              style={{flex:1,padding:"16px 18px",background:C.surface,border:"none",color:C.text,fontSize:15,fontFamily:"'JetBrains Mono',monospace",letterSpacing:"0.05em",outline:"none"}}
+            />
+            <button onClick={go} style={{padding:"16px 22px",background:C.grad,border:"none",color:"#fff",fontWeight:700,fontSize:13,cursor:"pointer",whiteSpace:"nowrap"}}>
+              Iniciar Solicitação →
+            </button>
+          </div>
+          {invalid && <div style={{marginTop:8,fontSize:12,color:C.red}}>Digite um CNPJ válido com 14 dígitos.</div>}
+        </div>
+        <p style={{marginTop:14,fontSize:11,color:C.dim}}>Análise 100% manual · Sem aprovação automática · LGPD</p>
       </div>
     </section>
 
